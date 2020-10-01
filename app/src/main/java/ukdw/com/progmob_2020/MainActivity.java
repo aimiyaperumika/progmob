@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Button myBtn = (Button)findViewById(R.id.button1);
         final EditText myEditText = (EditText)findViewById(R.id.editText1);
         Button btnHelp = (Button)findViewById(R.id.btnHelp);
+        Button btnTugas = (Button)findViewById(R.id.btnTugas);
 
         //action
         textView.setText(R.string.text_hello_world);
@@ -44,5 +45,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+       btnTugas.setOnClickListener((new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(MainActivity.this,TrackerActivity.class);
+               startActivity(intent);
+           }
+       }));
     }
 }
