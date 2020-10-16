@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnRecycler = (Button)findViewById(R.id.buttonRecylerView);
         Button btnCard = (Button)findViewById(R.id.buttonCard);
 
-
         //action
         textView.setText(R.string.text_hello_world);
         myBtn.setOnClickListener(new View.OnClickListener() {
