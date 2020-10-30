@@ -9,13 +9,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import ukdw.com.progmob_2020.Tugas3Model.DefaultResult;
 import ukdw.com.progmob_2020.Network.GetDataService;
 import ukdw.com.progmob_2020.Network.RetrofitClientInstance;
 import ukdw.com.progmob_2020.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class MahasiswaUpdateActivity extends AppCompatActivity {
     ProgressDialog pd;
@@ -44,6 +46,15 @@ public class MahasiswaUpdateActivity extends AppCompatActivity {
                         upNimLama.getText().toString(),
                         "72170142"
 
+                );
+                GetDataService services = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+                Call<DefaultResult> call = services.update_mhs(
+                        upNama.getText().toString(),
+                        upNim.getText().toString(),
+                        upAlamat.getText().toString(),
+                        upEmail.getText().toString(),
+                        "Kosongkan saja",
+                        "72170142"
                 );
 
                 del.enqueue(new Callback<DefaultResult>() {

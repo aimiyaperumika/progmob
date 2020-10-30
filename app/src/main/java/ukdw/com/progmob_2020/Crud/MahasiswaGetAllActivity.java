@@ -26,36 +26,38 @@ public class MahasiswaGetAllActivity extends AppCompatActivity {
     MahasiswaCRUDRecyclerAdapter mhsAdapter;
     ProgressDialog pd;
     List<Mahasiswa> mahasiswaList;
+    private RetrofitClientInstance GetDataService;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_get_all);
+   @Override
+   protected void onCreate(Bundle savedInstanceState){
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main_get_all);
 
-        rvMhs = (RecyclerView)findViewById(R.id.rvGetMhsAll);
-        pd = new ProgressDialog(this);
-        pd.setTitle("Mohon Bersabar");
-        pd.show();
+       rvMhs = (RecyclerView)findViewById(R.id.rvGetMhsAll);
+       pd = new ProgressDialog(this);
+       pd.setTitle("Mohon Bersabar");
+       pd.show();
 
-        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<List<Mahasiswa>> call = service.getMahasiswa("72170142");
+       GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+       Call<List<Mahasiswa>> call = service.getMahasiswa("72170142");
 
-        call.enqueue(new Callback<List<Mahasiswa>>() {
-            @Override
-            public void onResponse(Call<List<Mahasiswa>> call, Response<List<Mahasiswa>> response) {
-                pd.dismiss();
-                mahasiswaList = response.body();
-                mhsAdapter = new MahasiswaCRUDRecyclerAdapter(mahasiswaList);
+       call.enqueue(new Callback<List<Mahasiswa>>() {
+           @Override
+           public void onResponse(Call<List<Mahasiswa>> call, Response<List<Mahasiswa>> response) {
+               pd.dismiss();
+               mahasiswaList = response.body();
+               mhsAdapter = new MahasiswaCRUDRecyclerAdapter(mahasiswaList);
 
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MahasiswaGetAllActivity.this);
-                rvMhs.setLayoutManager(layoutManager);
-                rvMhs.setAdapter(mhsAdapter);
-            }
+               RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MahasiswaGetAllActivity.this);
+               rvMhs.setLayoutManager(layoutManager);
+               rvMhs.setAdapter(mhsAdapter);
+           }
 
-            @Override
-            public void onFailure(Call<List<Mahasiswa>> call, Throwable t) {
-                Toast.makeText(MahasiswaGetAllActivity.this, "Error",Toast.LENGTH_LONG);
-            }
-        });
-    }
+           @Override
+           public void onFailure(Call<List<Mahasiswa>> call, Throwable t) {
+               pd.dismiss();
+               Toast.makeText(MahasiswaGetAllActivity.this, "Error",Toast.LENGTH_LONG);
+           }
+       });
+   }
 }

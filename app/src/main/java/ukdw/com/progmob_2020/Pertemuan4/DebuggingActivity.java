@@ -29,11 +29,11 @@ public class DebuggingActivity extends AppCompatActivity {
         List<Mahasiswa> mahasiswaList = new ArrayList<Mahasiswa>();
 
         //generate data mahasiswa
-        Mahasiswa m1 = new Mahasiswa("Argo","72110101","084646464646");
-        Mahasiswa m2 = new Mahasiswa("Halim","72110101","084646464646");
-        Mahasiswa m3 = new Mahasiswa("Jong Jek Siang","72110101","084646464646");
-        Mahasiswa m4 = new Mahasiswa("Katon","72110101","084646464646");
-        Mahasiswa m5 = new Mahasiswa("Yetli","72110101","084646464646");
+        Mahasiswa m1 = new Mahasiswa("Aimiya","72170142","1234567890");
+        Mahasiswa m2 = new Mahasiswa("Silvi","72170001","084646464646");
+        Mahasiswa m3 = new Mahasiswa("Melvi","72170456","084646464646");
+        Mahasiswa m4 = new Mahasiswa("Sandi","72110111","084646464646");
+        Mahasiswa m5 = new Mahasiswa("Ilham","72110222","084646464646");
 
         mahasiswaList.add(m1);
         mahasiswaList.add(m2);

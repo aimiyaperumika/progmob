@@ -27,11 +27,13 @@ public class MahasiswaAddActivity extends AppCompatActivity {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_mahasiswa_add);
 
-        final EditText edNama = (EditText)findViewById(R.id.editTextNama);
-        final EditText edNim = (EditText)findViewById(R.id.editTextNim);
-        final EditText edAlamat = (EditText)findViewById(R.id.editTextAlamat);
-        final EditText edEmail = (EditText)findViewById(R.id.editTextEmail);
+
+          final EditText editTextNama = (EditText)findViewById(R.id.editTextNama);
+          final EditText editTextNim = (EditText)findViewById(R.id.editTextNim);
+         final EditText editTextAlamat = (EditText)findViewById(R.id.editTextAlamat);
+         final EditText editTextEmail = (EditText)findViewById(R.id.editTextEmail);
         Button btnSimpan = (Button)findViewById(R.id.buttonSimpanMhs);
+        pd = new ProgressDialog(MahasiswaAddActivity.this);
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,25 +43,25 @@ public class MahasiswaAddActivity extends AppCompatActivity {
 
                 GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
                 Call<DefaultResult> call = service.add_mhs(
-                        edNama.getText().toString(),
-                        edNim.getText().toString(),
-                        edAlamat.getText().toString(),
-                        edEmail.getText().toString(),
+                        editTextNama.getText().toString(),
+                        editTextNim.getText().toString(),
+                        editTextAlamat.getText().toString(),
+                        editTextEmail.getText().toString(),
                         "kosongkan saja diisi sembarang karean dirandom sistem",
-                        "72170144" //diisi nim masing-masing
+                        "72170142" //diisi nim masing-masing
                 );
 
                 call.enqueue(new Callback<DefaultResult>() {
                     @Override
                     public void onResponse(Call<DefaultResult> call, Response<DefaultResult> response) {
-                        pd.dismiss();
-                        Toast.makeText(MahasiswaAddActivity.this, "DATA BERHASISL DISIMPAN", Toast.LENGTH_LONG).show();
+                    pd.dismiss();
+                    Toast.makeText(MahasiswaAddActivity.this, "DATA BERHASISL DISIMPAN", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onFailure(Call<DefaultResult> call, Throwable t) {
-                        pd.dismiss();
-                        Toast.makeText(MahasiswaAddActivity.this, "GAGAL", Toast.LENGTH_LONG).show();
+                    pd.dismiss();
+                    Toast.makeText(MahasiswaAddActivity.this, "GAGAL", Toast.LENGTH_LONG).show();
                     }
                 });
             }
